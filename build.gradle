@@ -13,6 +13,22 @@ publishing {
             from components.java
         }
     }
+
+    repositories {
+        maven {
+            def snapshot = project.version.endsWith('SNAPSHOT')
+            def releaseUrl = 'https://repo.uxplima.com/repository/maven-releases/'
+            def snapshotUrl = 'https://repo.uxplima.com/repository/maven-snapshots/'
+
+            name = 'uxplima-nexus'
+            url = uri(snapshot ? snapshotUrl : releaseUrl)
+
+            credentials {
+                username = System.getenv('UXPLIMA_NEXUS_USER')
+                password = System.getenv('UXPLIMA_NEXUS_PASS')
+            }
+        }
+    }
 }
 
 group = 'com.uxplima'
