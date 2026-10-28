@@ -24,8 +24,8 @@ publishing {
             url = uri(snapshot ? snapshotUrl : releaseUrl)
 
             credentials {
-                username = System.getenv('UXPLIMA_NEXUS_USER')
-                password = System.getenv('UXPLIMA_NEXUS_PASS')
+                username = findProperty('uxplimaNexusUser') ?: System.getenv('UXPLIMA_NEXUS_USER')
+                password = findProperty('uxplimaNexusPass') ?: System.getenv('UXPLIMA_NEXUS_PASS')
             }
         }
     }
